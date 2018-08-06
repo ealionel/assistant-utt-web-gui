@@ -1,0 +1,49 @@
+.ChatContainer {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  border: solid 1px gray;
+  box-sizing: border-box;
+
+  height: 100%;
+  width: 100%;
+}
+
+.ChatInputBox {
+  box-sizing: border-box;
+  width: 100%;
+  height: 40px;
+  margin-bottom: 1px;
+}
+
+.ChatMessageContainer {
+  border: 1px solid gray;
+  box-sizing: border-box;
+  height: 100%;
+  margin: 5px;
+
+  display:flex;
+  flex-direction: column;
+
+  overflow-y: auto;
+}
+
+.ChatMessage {
+  border: solid 1px;
+  margin: 10px;
+  padding: 20px;
+  max-width: 52%;
+  min-width: 100px;
+}
+
+.ChatMessage--FromSender {
+  align-self: flex-start;
+
+}
+
+.ChatMessage--FromOther {
+  align-self: flex-end;
+
+}
