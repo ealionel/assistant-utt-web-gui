@@ -28,8 +28,21 @@ export default class Chat extends Component {
 
     console.log(`[${message.date.toLocaleTimeString()}] Message sent : ${ textMessage }`);
     this.addMessage(message);
+
+    this.sendQueryToChatbot(message.text)
+      .then((response) => {
+        console.log(`Chatbot replied : ${ response.queryResult.fulfillmentText }`);
+
+        this.addMessage(new Message({
+          text: response.queryResult.fulfillmentText,
+          isFromSender: false,
+        }));
+      })
+      .catch(error => console.log(error));
   }
 
+  // Ajoute un message au state et rerender le chat
+  // L'argument doit être un objet de type Message
   addMessage = (newMessage) => {
     this.setState((prevState) => (
       {
@@ -39,11 +52,36 @@ export default class Chat extends Component {
     ));
   }
 
+  // Envoie une requête HTTP à l'API de Dialogflow pour récupérer la réponse
+  sendQueryToChatbot = async (queryText) => {
+    const httpParameters = {
+      method: 'GET',
+      headers: {
+         'Content-Type': 'application/json',
+         'Accept': 'application/json',
+      },
+      body: {
+        text: queryText,
+      },
+    };
+
+    try {
+      const response = await fetch(`http://localhost:3001/detectIntent?textRequest=${queryText}`)
+        .then(response => response.json());
+
+      return response;
+    } catch (error) {
+
+      return new Error('Could not fetch response.');
+    }
+
+  }
+
   render() {
     return (
       <ChatContainer>
 
-        <ChatMessageContainer>
+        <ChatMessageContainer ref={ element => { this.messageContainerRef = element } }>
           { this.state.messages.map(msg => <ChatMessage message={ msg } key={ msg.id }/> ) }
         </ChatMessageContainer>
 
