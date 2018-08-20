@@ -54,16 +54,16 @@ export default class Chat extends Component {
 
   // Envoie une requête HTTP à l'API de Dialogflow pour récupérer la réponse
   sendQueryToChatbot = async (queryText) => {
-    const httpParameters = {
-      method: 'GET',
-      headers: {
-         'Content-Type': 'application/json',
-         'Accept': 'application/json',
-      },
-      body: {
-        text: queryText,
-      },
-    };
+    // const httpParameters = {
+    //   method: 'POST',
+    //   headers: {
+    //      'Content-Type': 'application/json',
+    //      'Accept': 'application/json',
+    //   },
+    //   body: {
+    //     text: queryText,
+    //   },
+    // };
 
     try {
       const response = await fetch(`http://localhost:3001/detectIntent?textRequest=${queryText}`)

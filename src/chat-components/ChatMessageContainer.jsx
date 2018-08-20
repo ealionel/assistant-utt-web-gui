@@ -7,7 +7,7 @@ export default class ChatMessageContainer extends Component {
   }
 
   scrollToBottom() {
-    this.refTest.scrollTop = this.refTest.scrollHeight;
+    this.divRef.scrollTop = this.divRef.scrollHeight;
   }
 
   componentDidUpdate() {
@@ -16,7 +16,7 @@ export default class ChatMessageContainer extends Component {
 
   render() {
     return (
-      <div ref={element => { this.refTest = element }} className="ChatMessageContainer">
+      <div ref={element => { this.divRef = element }} className="ChatMessageContainer">
         { this.props.children }
       </div>
     );
