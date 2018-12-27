@@ -53,19 +53,6 @@ export default class Chat extends Component {
   }
 
   // Envoie une requête HTTP à l'API de Dialogflow pour récupérer la réponse
-<<<<<<< HEAD
-  sendQueryToChatbot = async (queryText) => {
-    // const httpParameters = {
-    //   method: 'POST',
-    //   headers: {
-    //      'Content-Type': 'application/json',
-    //      'Accept': 'application/json',
-    //   },
-    //   body: {
-    //     text: queryText,
-    //   },
-    // };
-=======
   sendQueryToChatbot = async queryText => {
     const httpParameters = {
       method: 'GET',
@@ -77,12 +64,10 @@ export default class Chat extends Component {
         text: queryText
       }
     }
->>>>>>> 9a4f53a35a4b1ef604e5f3b483f8fd2ad5042102
 
     try {
       const response = await fetch(
         `http://assistantutt.ga:8080/api/dialogflow/detectIntent?textRequest=${queryText}`,
-        { mode: 'no-cors' }
       ).then(response => response.json())
       console.log(response)
       return response
