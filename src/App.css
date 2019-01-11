@@ -26,26 +26,28 @@
   height: 100%;
   margin: 5px;
 
-  display:flex;
+  display: flex;
   flex-direction: column;
 
   overflow-y: auto;
 }
 
 .ChatMessage {
-  border: solid 1px;
+  border-radius: 25px;
+  padding: 10px;
+  position: relative;
+  background-color: #b2ebf2;
   margin: 10px;
   padding: 20px;
-  max-width: 52%;
-  min-width: 100px;
-}
-
-.ChatMessage--FromSender {
-  align-self: flex-start;
-
+  /* max-width: 52%; */
+  /* min-width: 100px; */
 }
 
 .ChatMessage--FromOther {
-  align-self: flex-end;
+  align-self: flex-start;
+  background-color: #a5d6a7;
+}
 
+.ChatMessage--FromSender {
+  align-self: flex-end;
 }

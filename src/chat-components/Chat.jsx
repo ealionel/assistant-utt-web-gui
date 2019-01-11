@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 
-import ChatInputBox from './ChatInputBox.jsx'
+import Inputs from './ChatInputBox.jsx'
 import ChatContainer from './ChatContainer.jsx'
 import ChatMessageContainer from './ChatMessageContainer.jsx'
 import ChatMessage from './ChatMessage.jsx'
+import AppBar from '../material/AppBar.jsx'
 
 import Message from '../classes/Message.js'
 
@@ -67,7 +68,7 @@ export default class Chat extends Component {
 
     try {
       const response = await fetch(
-        `http://assistantutt.ga:8080/api/dialogflow/detectIntent?textRequest=${queryText}`,
+        `http://assistantutt.ga:8080/api/dialogflow/detectIntent?textRequest=${queryText}`
       ).then(response => response.json())
       console.log(response)
       return response
@@ -79,6 +80,7 @@ export default class Chat extends Component {
   render() {
     return (
       <ChatContainer>
+        <AppBar />
         <ChatMessageContainer
           ref={element => {
             this.messageContainerRef = element
@@ -89,7 +91,7 @@ export default class Chat extends Component {
           ))}
         </ChatMessageContainer>
 
-        <ChatInputBox onMessageSent={this.onMessageSent} />
+        <Inputs onMessageSent={this.onMessageSent} />
       </ChatContainer>
     )
   }
