@@ -1,34 +1,59 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import classNames from 'classnames'
-import { withStyles } from '@material-ui/core/styles'
-import MenuItem from '@material-ui/core/MenuItem'
-import TextField from '@material-ui/core/TextField'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Input from '@material-ui/core/Input';
 
 const styles = theme => ({
   container: {
     display: 'flex',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
   },
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit
+  input: {
+    margin: theme.spacing.unit,
   },
-  dense: {
-    marginTop: 16
-  },
-  menu: {
-    width: 200
-  }
-})
+});
 
-class OutlinedTextFields extends React.Component {
-  state = {
-    name: 'Cat in the Hat',
-    age: '',
-    multiline: 'Controlled',
-    currency: 'EUR'
-  }
+function Inputs(props) {
+  const { classes } = props;
+  return (
+    <div className={classes.container}>
+      <Input
+        defaultValue="Hello world"
+        className={classes.input}
+        inputProps={{
+          'aria-label': 'Description',
+        }}
+      />
+      <Input
+        placeholder="Placeholder"
+        className={classes.input}
+        inputProps={{
+          'aria-label': 'Description',
+        }}
+      />
+      <Input
+        value="Disabled"
+        className={classes.input}
+        disabled
+        inputProps={{
+          'aria-label': 'Description',
+        }}
+      />
+      <Input
+        defaultValue="Error"
+        className={classes.input}
+        error
+        inputProps={{
+          'aria-label': 'Description',
+        }}
+      />
+    </div>
+  );
+}
+
+Inputs.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
   handleChange = name => event => {
     if (event.key === 'Enter' && event.target.value) {
@@ -37,25 +62,3 @@ class OutlinedTextFields extends React.Component {
     }
   }
 
-  render() {
-    const { classes } = this.props
-
-    return (
-      <form className={classes.container}>
-        <TextField
-          id="outlined-bare"
-          className={classes.textField}
-          margin="normal"
-          variant="outlined"
-          fullWidth
-        />
-      </form>
-    )
-  }
-}
-
-OutlinedTextFields.propTypes = {
-  classes: PropTypes.object.isRequired
-}
-
-export default withStyles(styles)(OutlinedTextFields)

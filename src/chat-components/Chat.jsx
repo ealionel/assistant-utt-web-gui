@@ -1,12 +1,18 @@
 import React, { Component } from 'react'
 
-import Inputs from './ChatInputBox.jsx'
+import ChatInputBox from './ChatInputBox.jsx'
 import ChatContainer from './ChatContainer.jsx'
 import ChatMessageContainer from './ChatMessageContainer.jsx'
 import ChatMessage from './ChatMessage.jsx'
 import AppBar from '../material/AppBar.jsx'
+import Chip from '../material/Chip.jsx'
+import FaceIcon from '@material-ui/icons/Face'
+import DoneIcon from '@material-ui/icons/Done'
 
 import Message from '../classes/Message.js'
+import Divider from '@material-ui/core/Divider'
+import 'simplebar'
+import 'simplebar/dist/simplebar.css'
 
 export default class Chat extends Component {
   constructor(props) {
@@ -14,7 +20,8 @@ export default class Chat extends Component {
 
     this.state = {
       messages: [],
-      messagesNumber: 0
+      messagesNumber: 0,
+      chip: {}
     }
   }
 
@@ -77,21 +84,39 @@ export default class Chat extends Component {
     }
   }
 
+  onClick = () => {
+    alert('oui')
+  }
   render() {
+    const data = {
+      chip: {
+        chip1: {
+          label: 'test1',
+          onClick: this.onClick
+        },
+        chip2: {
+          label: 'test2',
+          onClick: this.onClick
+        },
+        chip3: {
+          label: 'test3',
+          onClick: this.onClick
+        }
+      }
+    }
+
     return (
       <ChatContainer>
         <AppBar />
         <ChatMessageContainer
-          ref={element => {
-            this.messageContainerRef = element
-          }}
-        >
-          {this.state.messages.map(msg => (
+          message={this.state.messages.map(msg => (
             <ChatMessage message={msg} key={msg.id} />
           ))}
-        </ChatMessageContainer>
+          chip={<Chip data={data} />}
+        />
+        <Divider variant="middle" />
 
-        <Inputs onMessageSent={this.onMessageSent} />
+        <ChatInputBox onMessageSent={this.onMessageSent} />
       </ChatContainer>
     )
   }

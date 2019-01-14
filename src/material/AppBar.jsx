@@ -26,7 +26,7 @@ function ButtonAppBar(props) {
   return (
     <div className={classes.root}>
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar variant="dense">
           <IconButton
             className={classes.menuButton}
             color="inherit"
@@ -34,7 +34,7 @@ function ButtonAppBar(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" color="inherit" className={classes.grow}>
+          <Typography variant="h7" color="inherit" className={classes.grow}>
             Assistant UTT
           </Typography>
           <Button color="inherit">Login</Button>
